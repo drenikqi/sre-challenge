@@ -1,0 +1,32 @@
+1. Get the application URL by running these commands:
+{{- if .Values.ingress.enabled }}
+{{- range $host := .Values.ingress.hosts }}
+  {{- range .paths }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host.host }}{{ .path }}
+  {{- end }}
+{{- end }}
+{{- else if contains "NodePort" .Values.service.type }}
+  export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "retool.fullname" . }})
+  export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+{{- else if contains "LoadBalancer" .Values.service.type }}
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status of by running 'kubectl get --namespace {{ .Release.Namespace }} svc -w {{ include "retool.fullname" . }}'
+  export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ include "retool.fullname" . }} --template "{{"{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}"}}")
+  echo http://$SERVICE_IP:{{ .Values.service.port }}
+{{- else if contains "ClusterIP" .Values.service.type }}
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "retool.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace {{ .Release.Namespace }} $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:$CONTAINER_PORT
+{{- end }}
+
+{{- if and .Values.postgresql.enabled (and (not .Values.postgresql.auth.postgresPassword) (eq .Values.postgresql.auth.username "postgres")) }}
+***************************************************************************
+Warning: Using in-cluster postgresql setup. `.Values.postgresql.auth.username username` is set to the default admin username "postgres", but the admin password field `.Values.postgresql.auth.postgresPassword` is not set, so a random password is generated and used. This wouldn't affect your usage, but if you choose to uninstall and reinstall this helm chart, please make sure you remove the existing PersistentVolumeClaim backing the in-cluster postgresql by running:
+  kubectl --namespace {{ .Release.Namespace }} delete pvc/data-{{ include "retool.fullname" . }}-postgresql-0
+Alternatively, you can fetch the randomly generated password and set the value in `.Values.postgresql.auth.postgresPassword` to make sure it never changes unexpectedly:
+  echo $(kubectl --namespace {{ .Release.Namespace }} get secret/{{ include "retool.fullname" . }}-postgresql -o jsonpath='{.data.postgres-password}' | base64 -d)
+We highly recommend you do NOT use this subchart as is to run Postgres in a container for your production instance of Retool. It is only suitable for proof-of-concepts. Please use a managed Postgres, or self-host more permanantly.
+***************************************************************************
+{{- end }} 

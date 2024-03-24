@@ -1,0 +1,17 @@
+apiVersion: v2
+dependencies:
+- condition: postgresql.enabled
+  name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 12.1.5
+- condition: retool-temporal-services-helm.enabled,workflows.enabled
+  name: retool-temporal-services-helm
+  repository: ""
+  version: 1.1.2
+description: A Helm chart for Kubernetes
+maintainers:
+- email: engineering+helm@retool.com
+  name: Retool Engineering
+name: retool
+type: application
+version: 6.1.2
