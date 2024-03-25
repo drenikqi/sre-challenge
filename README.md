@@ -71,7 +71,7 @@ This project was designed with the intention of creating a scalable, secure, and
 
 **PostgreSQL**: I chose the replication architecture for the PostgreSQL setup, consisting of one primary and two read replicas, with persistence enabled. This design was selected to ensure high availability and data durability. By enabling persistence, I ensured that the data remains safe across pod restarts and deployments, essential for maintaining the stateful nature of database services.
 
-Furthermore, I added the `podAffinityPreset` to the configuration to distribute the PostgreSQL pods across different worker nodes. This approach provides added protection against node failure, ensuring that not all database instances are affected simultaneously and thereby enhancing the overall resilience of the system.
+Furthermore, I added the **podAffinityPreset** to the configuration to distribute the PostgreSQL pods across different worker nodes. This approach provides added protection against node failure, ensuring that not all database instances are affected simultaneously and thereby enhancing the overall resilience of the system.
 
 By implementing this architecture, I aimed to achieve a balance between high availability, data integrity, and performance, ensuring that the application can handle read-heavy workloads more efficiently while maintaining consistent data across the database replicas.
 
@@ -85,7 +85,7 @@ By configuring Keycloak in this manner, I aimed to create a secure, scalable, an
 
 **Retool**: For internal tooling, I set up Retool, also connecting it to the external PostgreSQL database established earlier. This decision ensures consistency across our services and leverages the reliability and availability of the pre-configured PostgreSQL setup. The use of an external database with Retool helps in managing application data more effectively, while also ensuring that the data remains secure and scalable alongside our growing needs.
 
-Furthermore, I integrated Retool with Keycloak for seamless user authentication and management. This integration is crucial for maintaining a centralized user authentication system, allowing for consistent security policies and simplified user management across our internal tools. By connecting Retool with Keycloak, I enabled single sign-on (SSO) capabilities, enhancing user experience by reducing the need for multiple logins and improving security by centralizing user credentials and access control.
+Additionally, I integrated Retool with Keycloak for seamless user authentication and management. This integration is crucial for maintaining a centralized user authentication system, allowing for consistent security policies and simplified user management across our internal tools. By connecting Retool with Keycloak, I enabled single sign-on (SSO) capabilities, enhancing user experience by reducing the need for multiple logins and improving security by centralizing user credentials and access control.
 
 By configuring Retool in this manner, I aimed to ensure that our internal tools are both easy to use and secure, enhancing productivity while maintaining high standards of security and data integrity.
 
@@ -97,11 +97,11 @@ By incorporating this backup strategy, I aimed to add an extra layer of protecti
 
 
 #### Sources
-(EKS) https://github.com/terraform-aws-modules/terraform-aws-eks
-(ArgoCD) https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
-(Traefik) https://github.com/traefik/traefik-helm-chart
-(PostgreSQL) https://github.com/bitnami/charts/tree/main/bitnami/postgresql
-(Keycloak) https://github.com/bitnami/charts/tree/main/bitnami/keycloak
-(Retool) https://docs.retool.com/self-hosted/quickstarts/kubernetes/helm
-(Retool) https://docs.retool.com/sso/quickstarts/custom/oidc
-(Monitoring) https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+(EKS) https://github.com/terraform-aws-modules/terraform-aws-eks  
+(ArgoCD) https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd  
+(Traefik) https://github.com/traefik/traefik-helm-chart  
+(PostgreSQL) https://github.com/bitnami/charts/tree/main/bitnami/postgresql  
+(Keycloak) https://github.com/bitnami/charts/tree/main/bitnami/keycloak  
+(Retool) https://docs.retool.com/self-hosted/quickstarts/kubernetes/helm  
+(Retool) https://docs.retool.com/sso/quickstarts/custom/oidc  
+(Monitoring) https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack  
