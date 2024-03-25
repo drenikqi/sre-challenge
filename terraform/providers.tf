@@ -16,11 +16,11 @@ terraform {
   }
   required_version = ">= 0.13"
   backend "s3" {
-    bucket         = "terraform-dren-test-challenge"
+    bucket         = "bucket_name"
     key            = "state/terraform.tfstate"
-    region         = "eu-central-1"
+    region         = "region"
     encrypt        = true
-    dynamodb_table = "terraform_lock"
+    dynamodb_table = "dynamodb_table"
   }
 }
 
