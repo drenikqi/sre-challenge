@@ -88,12 +88,19 @@ primary:
 ## Read replicas configuration ##
 readReplicas:
   replicaCount: 2
-  resources: {}
+  resources:
+    requests:
+      cpu: 2
+      memory: 512Mi
+    limits:
+      cpu: 3
+      memory: 1024Mi
   podAffinityPreset: hard
   persistence:
     size: 8Gi
 ```
 These settings configure the primary PostgreSQL instance and its read replicas with specific CPU, memory, and storage allocations, and set a hard pod affinity to ensure the pods are scheduled according to specific rules.
+You can adjust the resource requests and limits according to your needs
 
 ### Installing the Chart
 To install the chart with the release name postgres, run the following command:
