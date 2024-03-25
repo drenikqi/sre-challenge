@@ -18,7 +18,7 @@ helm repo update
 ```
 
 ### Configuration
-Create a YAML file named values.yaml ([already created](traefik-26.1.0/traefik/values.yaml)) and include the following configurations:
+Create a YAML file named `values.yaml` ([already created](traefik-26.1.0/traefik/values.yaml)) and include the following configurations:
 
 ```yaml
 ## Deployment configuration ##
@@ -34,7 +34,7 @@ service:
 These settings modify the default Traefik deployment to use a DaemonSet, ensuring a Traefik pod runs on every node. Additionally, they configure the service to use an AWS Network Load Balancer (NLB) through annotations.
 
 ### Installing the Chart
-To install the chart with the release name my-traefik, execute the following command:
+To install the chart with the release name traefik, execute the following command:
 
 ```bash
 helm install traefik traefik/traefik -f values.yaml -n ingress --create-namespace
@@ -68,7 +68,7 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
 ```
 ### Configuration
-Create a YAML file named values.yaml ([already created](postgresql-15.1.2/postgresql/values.yaml)) and paste the following configurations:
+Create a YAML file named `values.yaml` ([already created](postgresql-15.1.2/postgresql/values.yaml)) and paste the following configurations:
 
 ```yaml
 ## Primary server configuration ##
@@ -96,7 +96,7 @@ readReplicas:
 These settings configure the primary PostgreSQL instance and its read replicas with specific CPU, memory, and storage allocations, and set a hard pod affinity to ensure the pods are scheduled according to specific rules.
 
 ### Installing the Chart
-To install the chart with the release name my-postgresql, run the following command:
+To install the chart with the release name postgres, run the following command:
 
 ```bash
 helm install postgres bitnami/postgresql -f values.yaml -n database --create-namespace
@@ -107,7 +107,7 @@ This command deploys PostgreSQL on the Kubernetes cluster with the specified con
 After deploying, you can retrieve the postgres user password with the following command:
 
 ```bash
-kubectl get secret --namespace database postgres -o jsonpath="{.data.postgresql-password}" | base64 --decode
+kubectl get secret -n database postgres -o jsonpath="{.data.postgresql-password}" | base64 --decode
 ```
 
 # Keycloak Helm Chart Installation Guide
@@ -131,7 +131,7 @@ helm repo update
 ```
 
 ### Configuration
-Create a YAML file named values.yaml ([already created](keycloak-19.3.4/keycloak/values.yaml)) and include the following configurations:
+Create a YAML file named `values.yaml` ([already created](keycloak-19.3.4/keycloak/values.yaml)) and include the following configurations:
 
 ```yaml
 ## Authentication ##
@@ -183,13 +183,13 @@ externalDatabase:
   password: "password" # postgresql password retrieved earlier in the postgresql installation
 ```
 
-Ensure to replace the external database settings with those corresponding to your own external PostgreSQL instance and make sure the database exists.
+Ensure to replace the external database settings with those corresponding to your own external PostgreSQL instance and *make sure the database exists*.
 
 ### Installing the Chart
-To install the chart with the release name my-keycloak, execute the following command:
+To install the chart with the release name keycloak, execute the following command:
 
 ```bash
-helm install keycloak bitnami/keycloak -f values.yaml
+helm install keycloak bitnami/keycloak -f values.yaml -n identity --create-namespace
 ```
 
 This command deploys Keycloak on the Kubernetes cluster with your custom settings.
@@ -246,7 +246,7 @@ This guide details the steps to deploy a Retool instance using Helm with custom 
 
 ## Configuration
 
-Create a YAML file named values.yaml ([already created](retool-6.1.2/retool/values.yaml)) and paste the following configurations:
+Create a YAML file named `values.yaml` ([already created](retool-6.1.2/retool/values.yaml)) and paste the following configurations:
 
 ```yaml
 ## Retool specific configurations ##
@@ -306,7 +306,7 @@ environmentVariables:
 Replace the placeholders (e.g., <client secret from keycloak>, <keycloak_auth_url>, <keycloak_token_url>) with actual values from your Keycloak instance.
 
 ### Installing the Chart
-To install the chart with the release name my-retool, run the following command:
+To install the chart with the release name retool, run the following command:
 
 ```bash
 helm repo add retool https://charts.retool.com
@@ -324,7 +324,7 @@ kubectl get pods -n retool
 If you have not enabled Ingress, you can access Retool through port forwarding:
 
 ```bash
-kubectl port-forward svc/my-retool 3000:3000
+kubectl port-forward svc/my-retool 3000:3000 -n retool
 ```
 
 Then, navigate to http://localhost:3000 in your web browser.
@@ -349,7 +349,7 @@ helm repo update
 ```
 
 ### Configuration
-Create a YAML file named values.yaml with the following content to configure persistence for Grafana and Prometheus:
+Create a YAML file named `values.yaml` with the following content to configure persistence for Grafana and Prometheus:
 
 ```yaml
 grafana:
@@ -404,7 +404,7 @@ The kube-prometheus-stack installation provides access to Grafana and Prometheus
 For Grafana:
 
 ```bash
-kubectl port-forward svc/kube-prometheus-stack-grafana 3000 -n grafana
+kubectl port-forward svc/kube-prometheus-stack-grafana 3000 -n monitoring
 ```
 Then, access Grafana at http://localhost:3000.
 
