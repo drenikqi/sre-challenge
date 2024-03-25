@@ -95,6 +95,18 @@ The use of a cron job allows for automated, periodic backups without manual inte
 
 By incorporating this backup strategy, I aimed to add an extra layer of protection for our data, ensuring that we can recover quickly from unforeseen incidents and maintain the integrity and availability of our services.
 
+#### Time and difficulty estimation
+
+| Task Name                                               | Difficulty (1-10) | Time Estimation |
+|---------------------------------------------------------|-------------------|-----------------|
+| Task 1: Create a Kubernetes Cluster                     | 6                 | 4 hours         |
+| Task 2: Deploy ArgoCD (Optional)                        | 3                 | 2 hours         |
+| Task 3: Deploy Traefik as Ingress Controller (Optional) | 3                 | 2 hours         |
+| Task 4: Deploy Keycloak                                 | 4                 | 3 hours         |
+| Task 5: Deploy PostgreSQL                               | 3                 | 2.5 hours       |
+| Task 6: Deploy Retool Application (Optional)            | 4                 | 3 hours         |
+| Task 7: Deploy Monitoring                               | 3                 | 2 hours         |
+
 
 #### Sources
 (EKS) https://github.com/terraform-aws-modules/terraform-aws-eks  
