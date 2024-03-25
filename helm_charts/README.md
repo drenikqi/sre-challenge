@@ -18,7 +18,7 @@ helm repo update
 ```
 
 ### Configuration
-Create a YAML file named values.yaml ([already created](traefik-26.1.0\traefik\values.yaml)) and include the following configurations:
+Create a YAML file named values.yaml ([already created](traefik-26.1.0/traefik/values.yaml)) and include the following configurations:
 
 ```yaml
 ## Deployment configuration ##
