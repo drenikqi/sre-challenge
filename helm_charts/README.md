@@ -49,9 +49,6 @@ After the deployment, you can check the status of your Traefik Pods:
 kubectl get po -n ingress
 ```
 
-#### Conclusion
-Following this guide, you should now have a Traefik instance running as a DaemonSet, with AWS NLB support configured via service annotations. Check the official Traefik Helm chart documentation for more advanced configurations and scenarios.
-
 # PostgreSQL Helm Chart Installation Guide
 
 This guide will walk you through the process of deploying a PostgreSQL instance with specific configurations using Helm. The instance is set up with a replication architecture, custom resource allocations, pod affinity, and persistence settings.
@@ -112,9 +109,6 @@ After deploying, you can retrieve the postgres user password with the following 
 ```bash
 kubectl get secret --namespace database postgres -o jsonpath="{.data.postgresql-password}" | base64 --decode
 ```
-
-#### Conclusion
-By following this guide, you should have a running PostgreSQL instance with a replication setup, customized resource limits, and persistent storage. Make sure to check the official Helm chart documentation for more advanced configurations and usage scenarios.
 
 # Keycloak Helm Chart Installation Guide
 
@@ -203,9 +197,6 @@ This command deploys Keycloak on the Kubernetes cluster with your custom setting
 ### Accessing Keycloak
 Once deployed, you can access your Keycloak instance through the ingress endpoint, which should be set up according to the domain configured in your ingress settings.
 
-### Conclusion
-By following this guide, you should have a production-ready Keycloak instance, configured with a high availability setup, custom resource limits, ingress enabled for external access, and connected to an external PostgreSQL database. Remember to monitor your deployment through the enabled Prometheus metrics.
-
 # Setting up Keycloak for Retool Authentication
 
 This guide will walk you through setting up Keycloak to authenticate with Retool. You'll create a new realm and client in Keycloak, configure the client for OpenID Connect, and retrieve necessary endpoints for integration.
@@ -240,10 +231,6 @@ This guide will walk you through setting up Keycloak to authenticate with Retool
 3. Scroll down to the `Endpoints` field.
 4. Click on `OpenID Endpoint Configuration`.
 5. In the opened JSON document, find and note down `authorization_endpoint` and `token_endpoint`. These will be used in your Retool authentication settings.
-
-## Conclusion
-
-You have now successfully set up a realm and a client in Keycloak for your Retool authentication. Remember to securely store your client secret and use the retrieved endpoints in your Retool environment settings.
 
 # Retool Helm Chart Installation Guide
 
@@ -341,9 +328,6 @@ kubectl port-forward svc/my-retool 3000:3000
 ```
 
 Then, navigate to http://localhost:3000 in your web browser.
-
-### Conclusion
-Following this guide, you should now have a Retool instance running, configured to use an external PostgreSQL database and integrated with Keycloak for authentication. Ensure all configurations, especially those related to security (like secrets and keys), are kept private and secure.
 
 # Setting Up kube-prometheus-stack 
 
