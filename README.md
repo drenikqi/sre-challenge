@@ -28,7 +28,7 @@ This project automates the setup of an AWS EKS cluster using Terraform. It inclu
 
 2. **Plan and Apply:**
 
-    Review the execution plan and apply it to create the AWS EKS cluster:
+    Review the execution plan and apply it to create the AWS EKS cluster along with VPC, ALB controller and ArgoCD:
 
     ```bash
     terraform plan
