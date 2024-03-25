@@ -11,7 +11,7 @@ This project automates the setup of an AWS EKS cluster using Terraform. It inclu
 
 ## Prerequisites
 
-- AWS CLI, configured with administrator access
+- AWS CLI, configured with EKS and VPC creation (including NAT gateways and subnets) access.
 - Terraform installed
 - Helm installed
 
