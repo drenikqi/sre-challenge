@@ -5,7 +5,7 @@ This guide will lead you through the deployment of the Traefik ingress controlle
 ## Prerequisites
 
 - Kubernetes cluster
-- Helm 3 installed
+- Helm installed
 - kubectl configured to connect to your cluster
 
 ## Adding the Helm Chart Repository
@@ -59,7 +59,7 @@ This guide will walk you through the process of deploying a PostgreSQL instance 
 ## Prerequisites
 
 - Kubernetes cluster
-- Helm 3 installed
+- Helm installed
 - kubectl configured to connect to your cluster
 
 ### Adding the Helm Chart Repository
@@ -123,7 +123,7 @@ This guide will assist you in deploying a Keycloak instance using Helm with spec
 ## Prerequisites
 
 - Kubernetes cluster
-- Helm 3 installed
+- Helm installed
 - kubectl configured to connect to your cluster
 - External PostgreSQL database accessible within your Kubernetes cluster (if not using the built-in option)
 
